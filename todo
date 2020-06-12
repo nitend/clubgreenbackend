@@ -1,0 +1,8 @@
+Preisplan Mitgliedschaft 12: ID: plan_HJQKys2tv8fysl
+
+Error-Handling
+React-stripe importieren
+https://stripe.com/docs/billing/subscriptions/fixed-price
+ 
+Graphql PaymentResolver: charge subscription (charge ID, plan) -> Return type Error
+Kontakt Page

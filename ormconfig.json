@@ -1,0 +1,27 @@
+{
+   "type": "postgres",
+   "host": "localhost",
+   "port": 5432,
+   "database": "postgres",
+   "username": "postgres",
+   "password": "Bernau01",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/usermanagement/entity/**/*.ts",
+      "src/entity/**/*.ts",
+      "dist/entity/**/*.js",
+      "src/properties/entity/**/*.ts"     
+   ],
+   "migrations": [
+      "src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+   }
+}

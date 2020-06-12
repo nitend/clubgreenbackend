@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/18d844c4-3373-423b-b2a6-c24df9096d69/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/clubgreensrv",
+    "appService.deploySubpath": "src"
+}
