@@ -1,7 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm";
+import {Entity, Column, OneToMany} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { Booking } from "./Booking";
 import { __Type } from "graphql";
+import { EntityBase } from "./EntityBase";
 
 
 
@@ -9,11 +10,8 @@ import { __Type } from "graphql";
 @ObjectType("Property")
 @InputType("PropertyInput")
 @Entity("property")
-export class Property extends BaseEntity{
+export class Property extends EntityBase{
 
-    @Field(() => String)
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
 
     @Field()
     @Column("text", {default: ""})
@@ -46,9 +44,6 @@ export class Property extends BaseEntity{
     @Field()
     @Column("float", {default: 0})
     beds_tent: number;  
-
-    @Column("boolean", {default: false})
-    deleted: boolean;
 
     @Field(() => [String])
     @Column("text", { array: true, default: null})

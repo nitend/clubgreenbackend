@@ -1,8 +1,8 @@
 import { createAccessToken, createRefreshToken } from './auth';
 import { sendRefreshToken } from './sendRefreshToken';
-import { verifyToken } from './emailverification/emailverification';
+import { verifyToken } from '../emailverification/emailverification';
 import { verify } from 'jsonwebtoken';
-import { User } from './entity/User';
+import { User } from '../entity/User';
 import {Express} from 'express'
 
 export const usermanager = (app: Express) => {

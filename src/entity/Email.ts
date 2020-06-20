@@ -1,13 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
-import {ObjectType, Field, Int} from 'type-graphql'
+import {Entity, Column} from "typeorm";
+import {ObjectType, Field} from 'type-graphql'
+import { EntityBase } from "./EntityBase";
 
 @ObjectType()
 @Entity("email")
-export class Email extends BaseEntity{
-
-    @Field(() => Int)
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Email extends EntityBase{
 
     @Field()
     @Column("text")

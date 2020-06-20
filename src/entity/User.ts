@@ -1,13 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {Entity, Column} from "typeorm";
 import {ObjectType, Field} from 'type-graphql'
+import { EntityBase } from "./EntityBase";
 
 @ObjectType()
 @Entity("users")
-export class User extends BaseEntity{
-
-    @Field(() => String)
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+export class User extends EntityBase{
 
     @Field()
     @Column("text", {default: ""})
@@ -16,6 +13,9 @@ export class User extends BaseEntity{
     @Field()
     @Column("text")
     email: string;
+
+    @Column()
+    password: string;
 
     @Field({nullable: true})
     @Column("text", {nullable: true})
@@ -52,9 +52,6 @@ export class User extends BaseEntity{
     @Field()
     @Column("int", {default: 0})
     tokenVersion: number;
-
-    @Column()
-    password: string;
 
     @Field()
     @Column("boolean", {default: false})

@@ -1,40 +1,29 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn} from "typeorm";
+import {Entity, Column} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
+import { EntityBase } from "./EntityBase";
 
 @ObjectType()
 @InputType("ProductInput")
 @Entity("product")
-export class Product extends BaseEntity{
+export class Product extends EntityBase{
 
-    @Field()
-    @PrimaryGeneratedColumn("uuid")
-    id: string;    
-
-    @Field()
-    @CreateDateColumn({type: 'timestamp'})
-    creationDate: Date; 
-
-    @Field()
+    @Field({nullable: true})
     @Column("text", {default: ""})
     title: string;
 
-    @Field()
+    @Field({nullable: true})
     @Column("text", {default: ""})
     paymentPricePlan: string;
 
-    @Field()
+    @Field({nullable: true})
     @Column("float", {default: 0})
     price: number;
 
-    @Field()
+    @Field({nullable: true})
     @Column("int", {default: 0})
     minmonth: number;
 
-    @Field()
-    @Column("boolean", {default: false})
-    deleted: boolean;
-
-    @Field()
+    @Field({nullable: true})
     @Column("boolean", {default: true})
     active: boolean;
 

@@ -1,6 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {Entity, Column} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { __Type } from "graphql";
+import { EntityBase } from "./EntityBase";
 
 
 
@@ -8,11 +9,7 @@ import { __Type } from "graphql";
 @ObjectType("Sight")
 @InputType("SightInput")
 @Entity("sight")
-export class Sight extends BaseEntity{
-
-    @Field(() => String)
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+export class Sight extends EntityBase{
 
     @Field()
     @Column("text", {default: ""})
@@ -37,9 +34,6 @@ export class Sight extends BaseEntity{
     @Field()
     @Column("float")
     lat: number; 
-    
-    @Column("boolean", {default: false})
-    deleted: boolean;
 
     @Field(() => [String])
     @Column("text", { array: true, default: null})

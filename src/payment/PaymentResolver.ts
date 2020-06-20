@@ -2,7 +2,7 @@ import {Resolver, Mutation, Arg, UseMiddleware, Ctx} from 'type-graphql'
 import { isAuth } from '../usermanagement/isAuthMiddleware';
 import { subscripeToPricePlan, addPaymentMothodToCostumer } from './PaymentService';
 import { MyContext } from 'src/usermanagement/MyContext';
-import { User } from '../usermanagement/entity/User';
+import { User } from '../entity/User';
 
 
 @Resolver()

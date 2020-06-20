@@ -1,22 +1,16 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne} from "typeorm";
-import {ObjectType, Field} from 'type-graphql'
+import {Entity, Column, ManyToOne} from "typeorm";
+import {ObjectType, Field, InputType} from 'type-graphql'
 import { Property } from "./Property";
+import { EntityBase } from "./EntityBase";
 
 @ObjectType("Booking")
+@InputType("bookingInput")
 @Entity("buchung")
-export class Booking extends BaseEntity{
-
-    @Field(() => String)
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+export class Booking extends EntityBase{
 
     @Field()
     @Column("text", {default: ""})
     user: string;
-
-    @Field()
-    @Column("bigint")
-    date: number;
 
     @Field()
     @Column("bigint", {default: 0})
@@ -25,10 +19,6 @@ export class Booking extends BaseEntity{
     @Field()
     @Column("bigint", {default: 0})
     to: number;
-
-    @Field()
-    @Column("boolean", {default: false})
-    deleted: boolean;
 
     @Field()
     @Column("int")

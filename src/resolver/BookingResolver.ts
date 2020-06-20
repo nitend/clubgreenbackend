@@ -1,77 +1,55 @@
-import {Resolver, Query, Mutation, Arg, Ctx, UseMiddleware} from 'type-graphql'
-import { Booking } from '../entity/Booking';
-import {MyContext} from '../usermanagement/MyContext'
+import {Resolver, Query, Arg, UseMiddleware, Mutation} from 'type-graphql'
 import { isAuth } from '../usermanagement/isAuthMiddleware';
-import { BlockedDate } from './BookingObjectTypes';
-
-
+import { Bookings } from '../database';
+import { Booking } from '../entity/Booking';
+import { BlockedDate } from './ObjectTypes';
 
 
 @Resolver()
-export class BookingResolver {
+export class BookingResolver{
+
+    db = Bookings
 
     @Query(() => Booking, {nullable: true})
-    @UseMiddleware(isAuth)
-    async myBooking(@Ctx() { payload }: MyContext ) {
+    async getBooking(
+        @Arg("id") id: string
+    ) {        
+        return await this.db.findById(id);
+    }
 
-        if(payload?.userId){
-            const booking = await Booking.findOne({user: payload.userId, deleted: false}, {relations: ["property"]})
-            return booking;
-        }
-        return null;
+    @Query(() => Booking)
+    @UseMiddleware(isAuth)
+    async getNewBooking(){ 
+        return await this.db.insert(new Booking())
     }
 
     @Query(() => [Booking], {nullable: true})
-    @UseMiddleware(isAuth)
-    async allBooking(@Ctx() { payload }: MyContext ) {
-
-        if(payload?.userId){
-            const booking = await Booking.find()
-            return booking;
-        }
-        return null;
+    async getAllBookings() {
+        return await this.db.getAll();
     }
 
     @Mutation(() => Boolean)
     @UseMiddleware(isAuth)
-    async bookProperty(@Ctx() { payload }: MyContext,
-        @Arg("propertyId") propertyId: string,
-        @Arg("from")  from: number,
-        @Arg("to") to: number){
-
-
-        if(payload?.userId && propertyId){
-            const newBooking = new Booking();
-            newBooking.from = from;
-            newBooking.to = to;
-            newBooking.user = payload?.userId;
-            newBooking.date = Date.now();
-            newBooking.propertyId = propertyId;
-            try{
-                const result = await Booking.save(newBooking);
-                console.log("newbooking" + result)
-                return true
-
-            }catch(err){
-                return false
-            }
-        }   
-        return false;
+    async updateBooking(
+        @Arg("booking") booking: Booking){ 
+        return await this.db.replace(booking)
     }
-
+  
     @Mutation(() => Boolean)
     @UseMiddleware(isAuth)
-    async deleteBooking(@Ctx() { payload }: MyContext,
-        @Arg("bookingId") bookingId: string){
-
-        const bookingById = await Booking.findOne({id: bookingId});
-        if(bookingById && (bookingById?.user == payload?.userId)){
-            bookingById.deleted = true;
-            Booking.save(bookingById);
-            return true        
-        }    
-        return false;
+    async deleteBooking(
+        @Arg("id") id: string){    
+        return await this.db.delete(id);      
     }
+
+    /*
+    @Mutation(() => [Bookings])
+    @UseMiddleware(isAuth)
+    async getAktiveBookingsForProperty(
+        @Arg("propertyId") propertyId: string){    
+        return await this.db.findByPropValue("property", propertyId)     
+    }
+    */
 
     @Query(() => [BlockedDate], {nullable: true})
     async getBlockedDatesFromProperty(        

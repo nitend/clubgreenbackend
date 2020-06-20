@@ -1,6 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn} from "typeorm";
+import {Entity, Column} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { __Type } from "graphql";
+import { EntityBase } from "./EntityBase";
 
 
 
@@ -8,14 +9,7 @@ import { __Type } from "graphql";
 @ObjectType("Rating")
 @InputType("RatingInput")
 @Entity("rating")
-export class Rating extends BaseEntity{
-
-    @Field(() => String)
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
-
-    @CreateDateColumn()
-    creationDate: number; 
+export class Rating extends EntityBase{
     
     @Field()
     @Column("text", {default: ""})
@@ -40,8 +34,5 @@ export class Rating extends BaseEntity{
     @Field()
     @Column("text", {default: ""})
     comment: string;
-    
-    @Column("boolean", {default: false})
-    deleted: boolean;
 
 }
