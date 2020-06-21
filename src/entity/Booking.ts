@@ -1,5 +1,4 @@
 import {ObjectType, Field, InputType} from 'type-graphql'
-import { Property } from "./Property";
 import { EntityBase } from "./EntityBase";
 
 @ObjectType("Booking")
@@ -10,14 +9,11 @@ export class Booking extends EntityBase{
     user: string;
 
     @Field({nullable: true})
-    from: number;
+    dateOfArrival: string;
 
     @Field({nullable: true})
-    to: number;
+    dateOfDeparture: string;
 
     @Field({nullable: true})
     propertyId: string;
-
-    @Field({nullable: true})
-    property: Property
 }

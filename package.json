@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "devstart": "ts-node ./src/index.ts",
+    "start": "ts-node ./src/index.ts",
     "test": "jest"
   },
   "author": "",
