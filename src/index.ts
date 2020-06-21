@@ -6,7 +6,7 @@ import {usermanager} from './usermanagement/usermanager'
 import cors from 'cors'
 import {imgUpload} from './imageHandling/imageUploader'
 import { getNodes } from './imageHandling/UploadNodes';
-/*
+
 import { ProductResolver } from './resolver/ProductResolver';
 import { PaymentResolver } from './payment/PaymentResolver';
 import { RatingResolver } from './resolver/RatingResolver';
@@ -16,7 +16,7 @@ import {buildSchema} from "type-graphql";
 import { BookingResolver } from './resolver/BookingResolver';
 import { PropertyResolver } from './resolver/PropertyResolver';
 import { UserResolver } from "./resolver/UserResolver";
-*/
+
 
 (async () => { 
     const app = express(); 
@@ -40,7 +40,7 @@ import { UserResolver } from "./resolver/UserResolver";
     })
 
     imgUpload(app, getNodes())
-    /*
+
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             resolvers: [
@@ -57,7 +57,7 @@ import { UserResolver } from "./resolver/UserResolver";
     });
     
     apolloServer.applyMiddleware({app, cors: false});
-    */
+  
    const port = process.env.PORT || 80;
     app.listen(port, () => {
         console.log('Server is listening on Port ' + port)
