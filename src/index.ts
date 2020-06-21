@@ -58,7 +58,7 @@ import { UserResolver } from "./resolver/UserResolver";
     
     apolloServer.applyMiddleware({app, cors: false});
     */
-   const port = process.env.PORT || 4000;
+   const port = process.env.PORT || 80;
     app.listen(port, () => {
         console.log('Server is listening on Port ' + port)
     })
