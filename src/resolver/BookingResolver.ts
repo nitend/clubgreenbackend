@@ -4,7 +4,6 @@ import { Bookings } from '../database';
 import { Booking } from '../entity/Booking';
 import { BlockedDate } from './ObjectTypes';
 import { MyContext } from 'src/usermanagement/MyContext';
-import { isCompositeType } from 'graphql';
 
 
 @Resolver()
