@@ -1,55 +1,37 @@
-import {Entity, Column, OneToMany} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
-import { Booking } from "./Booking";
 import { __Type } from "graphql";
-import { EntityBase } from "./EntityBase";
-
+import { EntityBase } from './EntityBase';
 
 
 
 @ObjectType("Property")
 @InputType("PropertyInput")
-@Entity("property")
 export class Property extends EntityBase{
 
-
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     title: string;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     subtext: string;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     location: string;
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     long: number;
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     lat: number; 
     
-    @Field()
-    @Column("float", {default: 0})
+    @Field({nullable: true})
     beds_adult: number; 
     
-    @Field()
-    @Column("float", {default: 0})
+    @Field({nullable: true})
     beds_kids: number;
     
-    @Field()
-    @Column("float", {default: 0})
+    @Field({nullable: true})
     beds_tent: number;  
 
     @Field(() => [String])
-    @Column("text", { array: true, default: null})
     images: string[];
-
-    @OneToMany(_type => Booking, booking  => booking.property )
-    booking: Booking[]
-
 }

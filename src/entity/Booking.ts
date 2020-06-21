@@ -1,30 +1,23 @@
-import {Entity, Column, ManyToOne} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { Property } from "./Property";
 import { EntityBase } from "./EntityBase";
 
 @ObjectType("Booking")
 @InputType("bookingInput")
-@Entity("buchung")
 export class Booking extends EntityBase{
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     user: string;
 
-    @Field()
-    @Column("bigint", {default: 0})
+    @Field({nullable: true})
     from: number;
 
-    @Field()
-    @Column("bigint", {default: 0})
+    @Field({nullable: true})
     to: number;
 
-    @Field()
-    @Column("int")
+    @Field({nullable: true})
     propertyId: string;
 
-    @Field()
-    @ManyToOne(_type => Property, property  => property.booking )
+    @Field({nullable: true})
     property: Property
 }

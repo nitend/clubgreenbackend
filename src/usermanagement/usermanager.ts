@@ -2,10 +2,12 @@ import { createAccessToken, createRefreshToken } from './auth';
 import { sendRefreshToken } from './sendRefreshToken';
 import { verifyToken } from '../emailverification/emailverification';
 import { verify } from 'jsonwebtoken';
-import { User } from '../entity/User';
 import {Express} from 'express'
+import { Users } from '../database';
 
 export const usermanager = (app: Express) => {
+
+    const db = Users;
 
     app.post('/refresh_token', async (req, res) => { 
         const token = req.cookies.jid
@@ -22,7 +24,8 @@ export const usermanager = (app: Express) => {
             return res.send({ ok: false, accessToken: ''})
         }
 
-        const user = await User.findOne({id: payload.userId})
+        const result = await db.findByPropValue("id", payload.userId)
+        const user = result[0];
         if(!user){
             return res.send({ ok: false, accessToken: ''})  
         }
@@ -42,10 +45,11 @@ export const usermanager = (app: Express) => {
         const validEmail = await verifyToken(token);
 
         if(validEmail){
-            const user = await User.findOne({email: validEmail});
+            const result = await db.findByPropValue("email", validEmail);
+            const user = result[0]
             if(user){
                 user.email_verified = true;
-                user.save
+                db.replace(user);
                 res.send("Nutzerkonto aktiviert");
             }  
         } else {

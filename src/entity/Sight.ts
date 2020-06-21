@@ -1,4 +1,3 @@
-import {Entity, Column} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { __Type } from "graphql";
 import { EntityBase } from "./EntityBase";
@@ -8,35 +7,27 @@ import { EntityBase } from "./EntityBase";
 
 @ObjectType("Sight")
 @InputType("SightInput")
-@Entity("sight")
 export class Sight extends EntityBase{
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     title: string;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     type: string;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     subtext: string;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     location: string;
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     long: number;
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     lat: number; 
 
     @Field(() => [String])
-    @Column("text", { array: true, default: null})
     images: string[];
 
 }

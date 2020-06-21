@@ -1,6 +1,5 @@
 import { imageUploadNode } from "./imageUploader";
-import { Property } from "../entity/Property";
-import { Sight } from "../entity/Sight";
+import { Properties, Sights } from "../database";
 
 
 export const getNodes = () => {
@@ -24,16 +23,17 @@ export const getNodes = () => {
 
 }
 
-
+const propDb = Properties;
+const sightDb = Sights;
 
 const updatePropertyImageData = async (propId: string, imageUrl: string) => {
-    const prop = await Property.findOne({id: propId})
+    const prop = await propDb.findByPropValue("id", propId)
     pushImageData(prop, imageUrl)
  
 }
 
 const updateSightImageData = async (sightId: string, imageUrl: string) => {
-    const prop = await Sight.findOne({id: sightId})
+    const prop = await sightDb.findByPropValue("id", sightId)
     pushImageData(prop, imageUrl)
  
 }

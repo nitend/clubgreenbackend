@@ -58,7 +58,7 @@ export class BookingResolver{
         const blockedDates: BlockedDate[] = []
 
         if(propertyId){
-            const booking = await Booking.find({propertyId: propertyId})
+            const booking = await this.db.findByPropValue("propertyId", propertyId)
             booking.map((book) => {
                 const arrivalDate: BlockedDate = {
                     bookingId: book.id,

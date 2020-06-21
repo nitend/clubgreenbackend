@@ -1,4 +1,3 @@
-import {Entity, Column} from "typeorm";
 import {ObjectType, Field, InputType} from 'type-graphql'
 import { __Type } from "graphql";
 import { EntityBase } from "./EntityBase";
@@ -8,31 +7,21 @@ import { EntityBase } from "./EntityBase";
 
 @ObjectType("Rating")
 @InputType("RatingInput")
-@Entity("rating")
 export class Rating extends EntityBase{
     
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     title: string;
 
     @Field()
-    @Column("text", {default: ""})
-    targettype: "property" | "sight";
-
-    @Field()
-    @Column("float")
     targetId: number; 
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     rating: number; 
 
-    @Field()
-    @Column("float")
+    @Field({nullable: true})
     userId: number;
 
-    @Field()
-    @Column("text", {default: ""})
+    @Field({nullable: true})
     comment: string;
 
 }

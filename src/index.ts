@@ -4,7 +4,6 @@ import { UserResolver } from "./resolver/UserResolver";
 import express from "express";
 import {ApolloServer} from "apollo-server-express";
 import {buildSchema} from "type-graphql";
-import { createConnection } from 'typeorm';
 import cookieParser from 'cookie-parser';
 import {usermanager} from './usermanagement/usermanager'
 import cors from 'cors'
@@ -47,9 +46,7 @@ import { SightResolver } from './resolver/SightsResolver';
         }),
         context: ({req, res}) => ({req, res})
     });
-
-    await createConnection();
-
+    
     apolloServer.applyMiddleware({app, cors: false});
 
     app.listen(4000, () => {
