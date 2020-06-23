@@ -39,6 +39,14 @@ export class SightResolver{
     async deleteSight(
         @Arg("id") id: string){    
         return await this.db.delete(id);      
+    }    
+    
+    @Mutation(() => Boolean)
+    @UseMiddleware(isAuth)
+    async insertSight(
+        @Arg("sight") sight: Sight){ 
+        return await this.db.insert(sight)
     }
+
 }
 

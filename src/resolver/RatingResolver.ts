@@ -43,7 +43,12 @@ export class RatingResolver{
         return await this.db.delete(id);      
     }
 
-
+    @Mutation(() => Boolean)
+    @UseMiddleware(isAuth)
+    async insertRating(
+        @Arg("rating") rating: Rating){ 
+        return await this.db.insert(rating)
+    }
 
     @Query(() => RatingValues, {nullable: true})
     // @UseMiddleware(isAuth)

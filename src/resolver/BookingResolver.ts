@@ -18,6 +18,16 @@ export class BookingResolver{
         return await this.db.findById(id);
     }
 
+    @Query(() => Booking, {nullable: true})
+    @UseMiddleware(isAuth)
+    async myBooking( @Ctx() context: MyContext) { 
+        if(context && context.payload){
+            return await this.db.findByPropValue("userId", context.payload.userId);  
+        } else {
+            return false;
+        }     
+    }
+
     @Query(() => Booking)
     @UseMiddleware(isAuth)
     async getNewBooking(){ 

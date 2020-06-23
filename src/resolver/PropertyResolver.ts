@@ -41,5 +41,11 @@ export class PropertyResolver{
         return await this.db.delete(id);      
     }
 
+    @Mutation(() => Boolean)
+    @UseMiddleware(isAuth)
+    async insertProperty(
+        @Arg("property") property: Property){ 
+        return await this.db.insert(property)
+    }
 }
 
