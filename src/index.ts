@@ -34,10 +34,12 @@ import { UserResolver } from "./resolver/UserResolver";
 
     app.post('/upload/property/image', );
 
+    /*
     app.get("/", (req, res) => {
         console.log(req)
         res.send("ready + env: DB " + process.env.COSMOS_DB_URL)
     })
+    */
 
     imgUpload(app, getNodes())
 
