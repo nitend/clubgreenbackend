@@ -22,12 +22,12 @@ import { UserResolver } from "./resolver/UserResolver";
     const app = express(); 
     app.use(cookieParser());
     
-    if(process.env.DEV){
-        app.use(cors({
-            origin: "http://localhost:3000",
-            credentials: true
-        }))
-    }
+   
+    app.use(cors({
+        origin: process.env.CORS_DOMAIN_ALLOWED,
+        credentials: true
+    }))
+
 
     app.use(express.static('public'));
     usermanager(app)
