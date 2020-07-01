@@ -32,19 +32,13 @@ const UserResolver_1 = require("./resolver/UserResolver");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.use(cookie_parser_1.default());
-    if (process.env.DEV) {
-        app.use(cors_1.default({
-            origin: "http://localhost:3000",
-            credentials: true
-        }));
-    }
+    app.use(cors_1.default({
+        origin: process.env.CORS_DOMAIN_ALLOWED,
+        credentials: true
+    }));
     app.use(express_1.default.static('public'));
     usermanager_1.usermanager(app);
     app.post('/upload/property/image');
-    app.get("/", (req, res) => {
-        console.log(req);
-        res.send("ready + env: DB " + process.env.COSMOS_DB_URL);
-    });
     imageUploader_1.imgUpload(app, UploadNodes_1.getNodes());
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: yield type_graphql_1.buildSchema({
