@@ -18,6 +18,7 @@ exports.usermanager = (app) => {
     const db = database_1.Users;
     app.post('/refresh_token', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const token = req.cookies.jid;
+        console.log("token refreshed : " + token);
         if (!token) {
             return res.send({ ok: false, accessToken: '' });
         }

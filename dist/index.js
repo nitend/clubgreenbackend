@@ -33,7 +33,7 @@ const UserResolver_1 = require("./resolver/UserResolver");
     const app = express_1.default();
     app.use(cookie_parser_1.default());
     app.use(cors_1.default({
-        origin: process.env.CORS_DOMAIN_ALLOWED,
+        origin: "http://localhost:3000",
         credentials: true
     }));
     app.use(express_1.default.static('public'));
