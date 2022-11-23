@@ -44,7 +44,7 @@
     "pg": "^7.18.1",
     "pug": "^2.0.4",
     "reflect-metadata": "^0.1.13",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.0",
     "stripe": "^8.53.0",
     "ts-jest": "^26.0.0",
     "ts-node": "^8.6.2",
